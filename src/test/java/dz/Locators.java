@@ -2,7 +2,7 @@ package dz;
 
 public class Locators {
 
-<div class="supplier-rating">8.8</div>
+<<div class="mb-8 text-24 text-bold text-center">We are currently searching . . .</div>
 
 
             .//*[contains(@class, 'logo-cell')];
