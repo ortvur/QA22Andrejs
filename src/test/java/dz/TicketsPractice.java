@@ -1,11 +1,26 @@
 package dz;
 
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import java.time.Duration;
 
 public class TicketsPractice {
 
-    private WebDriver browser;
+ @Test
+ private WebDriver browser;
+
+ System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
+ WebDriver browser = new ChromeDriver();
+ browser.manage().window().maximize();
+
+        browser.get("http://qaguru.lv:8089/tickets/");
+    WebDriverWait = new WebDriverWait(browser, Duration.ofSeconds(10);
+
+
     private final By DESTANATION_FROM = By.xpath(".//span[@class = 'bTxt']['RIX']");
     private final By DESTANATION_TO = By.xpath(".//span[@class = 'bTxt']['SFO']");
 
