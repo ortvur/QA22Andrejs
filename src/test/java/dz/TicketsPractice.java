@@ -1,45 +1,69 @@
 package dz;
-
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-
 public class TicketsPractice {
 
- @Test
- private WebDriver browser;
+    private final By FROM = By.id("afrom");
+    private final By TO = By.id("bfrom");
+    private final By DESTANATION_FROM = By.xpath(".//span[@class = 'bTxt'][1]");
+    //    private final By DESTANATION_FROM = By.xpath(".//span[@class = 'bTxt']['RIX']"); ----------- WRONG!
+    private final By DESTANATION_TO = By.xpath(".//span[@class = 'bTxt'][2]");
+    //    private final By DESTANATION_TO = By.xpath(".//span[@class = 'bTxt']['SFO']"); -------------- WRONG!
+    private final By FIRST_NAME = By.id("name");
+    private final By LAST_NAME = By.id("surname");
 
- System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
- WebDriver browser = new ChromeDriver();
- browser.manage().window().maximize();
-
-        browser.get("http://qaguru.lv:8089/tickets/");
-    WebDriverWait = new WebDriverWait(browser, Duration.ofSeconds(10);
-
-
-    private final By DESTANATION_FROM = By.xpath(".//span[@class = 'bTxt']['RIX']");
-    private final By DESTANATION_TO = By.xpath(".//span[@class = 'bTxt']['SFO']");
-
-    String text = "RIX";
-    String secondText = "SFO";
-
-    Select destanationFrom = new Select(browser.findElement(DESTANATION_FROM));
-    destanationFrom.selectByValue("RIX");
-
-    browser.findElement(DESTANATION_FROM).clear();
-browser.findElement(DESTANATION_FROM).sendKeys("RIX");
-
-Select destanationTo = new Select(browser.findElement(DESTANATION_TO));
-destanationTO.selectByValue("SFO");
- browser.findElement(DESTANATION_TO).clear();
-browser.findElement(DESTANATION_TO).sendKeys("SFO");
+    private final By GO_BTN = By.xpath(".//span[@class = 'gogogo']");
 
 
+    private WebDriver browser;
+    private WebDriverWait wait;
 
-    Assertions.assertEquals("RIX", browser.findElement(DESTANATION_FROM).getText());
+
+    @Test
+    public void reservationCheck2() {
+        System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
+         browser = new ChromeDriver();
+        browser.manage().window().maximize();
+        browser.get("http://www.qaguru.lv:8089/tickets/");
+        //WebDriver wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+         wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+                //https://youtu.be/BFOJYQ-BWz0?list=PL29imBtAdLy-9H5wHMT0BRF4RziIQuAEr&t=1725
+
+        Select airportFrom = new Select(browser.findElement(FROM));
+        airportFrom.selectByValue("RIX");
+
+        Select airportTo = new Select(browser.findElement(TO));
+        airportTo.selectByValue("SFO");
+
+        browser.findElement(GO_BTN).click();
+       // browser.findElement(FIRST_NAME).clear();
+       // browser.findElement(FIRST_NAME).sendKeys("Arturs");
+        type(FIRST_NAME, "Boryan");
+        type(LAST_NAME, "Yeltsin");
+
+
+    }
+    private void select(By locator, String value) {
+        WebElement we = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        Select select = new Select(we);
+        select.selectByValue(value);
+    }
+    private void type(By locator, String text) {
+        WebElement input = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        input.clear();
+        input.sendKeys(text);
+
+    }
+
+
+
 
 }

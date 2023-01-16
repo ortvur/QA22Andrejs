@@ -7,7 +7,7 @@ package dz;
 
         private int graphicCard;
 
-        private float case;
+        private float tower;
 
         private int powerSupply;
 
