@@ -16,15 +16,20 @@ public class WeatherResponse {
 
     private List<Minute> minutely;
 
+    private Hourly hourly;
+
+    private Daily daily;
+
+
     private List<Weather> weather;
 
-    private Hourly hourly;
+
     private double pop;
 
     @JsonProperty("feels_like")
     private FeelsLike feelsLike;
 
-    private Daily daily;
+
 
     private List<Temp> temps;
 
