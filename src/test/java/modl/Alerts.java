@@ -1,7 +1,10 @@
 package modl;
 
+import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Alerts {
-    private String sender_name;
+    @JsonProperty("sender_name")
+    private String senderName;
     private String event;
     private Long start;
     private Long end;
